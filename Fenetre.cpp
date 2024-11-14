@@ -6,6 +6,7 @@ Fenetre::Fenetre(int largeur, int hauteur, const char *titre)
     InitialisationGLFW();
     CreationFenetre();
     InitialisationGLAD();
+    // FermerFenetre();
 }
 Fenetre::Fenetre(int largeur, int hauteur, const char *titre, int glMajeurVersion, int glMineureVersion)
     : m_largeur(largeur), m_hauteur(hauteur), m_titre(titre), m_glMajeurVersion(glMajeurVersion), m_glMineureVersion(glMineureVersion)
@@ -13,6 +14,7 @@ Fenetre::Fenetre(int largeur, int hauteur, const char *titre, int glMajeurVersio
     InitialisationGLFW();
     CreationFenetre();
     InitialisationGLAD();
+    // FermerFenetre();
 }
 
 int Fenetre::InitialisationGLFW()
@@ -29,7 +31,9 @@ int Fenetre::InitialisationGLFW()
     glfwInitHint(GLFW_CONTEXT_VERSION_MAJOR, m_glMajeurVersion);
     glfwInitHint(GLFW_CONTEXT_VERSION_MINOR, m_glMineureVersion);
     glfwInitHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+#ifdef __APPLE__
     glfwInitHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+#endif
     return 1;
 }
 
@@ -58,9 +62,23 @@ int Fenetre::CreationFenetre()
     }
     std::cout << "Fenêtre créée avec succès." << std::endl;
     glfwMakeContextCurrent(m_fenetre); // Créer un contexte OpenGL
+    // glfwSetFramebufferSizeCallback(m_fenetre, Redimensionner);
+    return 1;
+}
+int Fenetre::FermerFenetre()
+{
+    if (glfwGetKey(m_fenetre, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+        glfwSetWindowShouldClose(m_fenetre, true);
     return 1;
 }
 GLFWwindow *Fenetre::recupFenetre() const
 {
     return m_fenetre;
 }
+/* -----------------------------------
+void Fenetre::Redimensionner(GLFWwindow *m_fenetre, int m_largeur, int m_hauteur)
+{
+    // make sure the viewport matches the new window dimensions; note that width and
+    // height will be significantly larger than specified on retina displays.
+    glViewport(0, 0, m_largeur, m_hauteur);
+}*/

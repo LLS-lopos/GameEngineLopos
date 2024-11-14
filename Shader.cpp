@@ -2,7 +2,6 @@
 
 Shader::Shader(const char *pointShaderSource, const char *fragmentShaderSource)
 {
-    // 1. Compile vertex shader
     int indexShaderPoint = ConfigurerPointShader(pointShaderSource);
     int indexShaderFragment = ConfigurerFragmentShader(fragmentShaderSource);
     ConfigurerShaderProgram(indexShaderPoint, indexShaderFragment);
@@ -30,8 +29,7 @@ int Shader::ConfigurerPointShader(const char *pointShaderSource)
 }
 int Shader::ConfigurerFragmentShader(const char *fragmentShaderSource)
 {
-    //unsigned int fragmentShader;
-    int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+    unsigned int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
     glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
     glCompileShader(fragmentShader);
     int success = 0;
