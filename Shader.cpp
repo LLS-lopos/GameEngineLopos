@@ -12,8 +12,7 @@ void Shader::UtilisezShader()
 }
 int Shader::ConfigurerPointShader(const char *pointShaderSource)
 {
-    unsigned int pointShader;
-    pointShader = glCreateShader(GL_VERTEX_SHADER);
+    unsigned int pointShader = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(pointShader, 1, &pointShaderSource, NULL);
     glCompileShader(pointShader);
     int success = 0;

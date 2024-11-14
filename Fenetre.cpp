@@ -52,7 +52,6 @@ int Fenetre::InitialisationGLAD()
 
 int Fenetre::CreationFenetre()
 {
-    // Création de la fenêtre
     m_fenetre = glfwCreateWindow(m_largeur, m_hauteur, m_titre, NULL, NULL);
     if (!m_fenetre)
     {

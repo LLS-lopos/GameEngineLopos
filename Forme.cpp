@@ -10,15 +10,13 @@ Shader *Forme::CreationTriangle(Shader *shader, float pointTaille, GLDrawType gl
                                 float x2, float y2, float z2,
                                 float x3, float y3, float z3)
 {
-    // forme
     float point[9] = {x1, y1, z1, x2, y2, z2, x3, y3, z3};
     m_shader = shader;
     ConfigureVBO(pointTaille, point);
     return m_shader;
 }
-void Forme::Draw()
+void Forme::Draw()  // Dessiner la forme
 {
-    // Dessiner la forme
     glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
     glVertexAttribPointer(0, 3, GL_FLOAT, false, 3 * sizeof(float), (void *)0);
     glEnableVertexAttribArray(0);
