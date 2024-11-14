@@ -12,8 +12,8 @@ enum GLDrawType
 class Forme
 {
 public:
-    Forme(Shader *shader, GLDrawType glDrawType, float pointTaille, float point[]);
-    Shader *CreationTriangle(Shader *shader, float pointTaille, GLDrawType glDrawType,
+    Forme(Shader *shader, GLDrawType glDrawType, float pointTaille, float point[], bool Filaire);
+    Shader *CreationTriangle(Shader *shader, float pointTaille, GLDrawType glDrawType, bool Filaire,
                              float x1, float y1, float z1,
                              float x2, float y2, float z2,
                              float x3, float y3, float z3);
@@ -21,9 +21,11 @@ public:
 
 private:
     GLuint m_vbo;
+    GLuint m_vao;
     GLDrawType m_glDrawType;
     Shader *m_shader;
 
-    void ConfigureVBO(float pointTaille, float point[]);
+    void ConfigureVBO(float pointTaille, float point[], bool Filaire);
+    void ConfigureVAO();
 };
 #endif // _FORME_H_

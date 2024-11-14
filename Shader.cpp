@@ -45,7 +45,6 @@ int Shader::ConfigurerFragmentShader(const char *fragmentShaderSource)
 void Shader::ConfigurerShaderProgram(int indexShaderPoint, int indexShaderFragment)
 {
     m_shaderProgram = glCreateProgram();
-
     glAttachShader(m_shaderProgram, indexShaderPoint);
     glAttachShader(m_shaderProgram, indexShaderFragment);
     glLinkProgram(m_shaderProgram);
@@ -58,7 +57,6 @@ void Shader::ConfigurerShaderProgram(int indexShaderPoint, int indexShaderFragme
         std::cout << "Erreur lors de la compilation du shader\n"
                   << infoLog << std::endl;
     }
-
     glDeleteShader(indexShaderPoint);
     glDeleteShader(indexShaderFragment);
 }
