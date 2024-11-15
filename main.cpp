@@ -8,8 +8,6 @@
 int main()
 {
     Fenetre *fenetre = new Fenetre(1000, 800, new char[]{"LOPOS ENGIME"});
-    float point[] = {-0.5f, -0.5f, 0.0f, 0.5f, -0.5f, 0.0f, 0.0f, 0.5f, 0.0f};
-        
 
     const char *vertexShaderSource = "#version 330 core\n"
                                      "layout(location = 0) in vec3 aPos;\n"
@@ -26,8 +24,8 @@ int main()
                                        "}\n";
 
     Shader *shader = new Shader(vertexShaderSource, fragmentShaderSource);
-    Forme *forme = new Forme(shader, GLDrawType::GL_DRAW_STREAM, sizeof(point), point, false);
-    
+    Forme *tri = Forme::CreationTriangle(shader, GLDrawType::GL_DRAW_STREAM, -0.5f, -0.5f, 0.0f, 0.5f, -0.5f, 0.0f, 0.0f, 0.5f, 0.0f);
+    Forme *forme = Forme::CreationRectangle(shader, GLDrawType::GL_DRAW_STREAM, 1.0f, 0.5f);
 
     while (!glfwWindowShouldClose(fenetre->recupFenetre())) // Boucle principale
     {
@@ -35,6 +33,7 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT);
 
         forme->Draw();
+        tri->Draw();
 
         glfwPollEvents();
         glfwSwapBuffers(fenetre->recupFenetre());

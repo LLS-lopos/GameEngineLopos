@@ -12,20 +12,23 @@ enum GLDrawType
 class Forme
 {
 public:
-    Forme(Shader *shader, GLDrawType glDrawType, float pointTaille, float point[], bool Filaire);
-    Shader *CreationTriangle(Shader *shader, float pointTaille, GLDrawType glDrawType, bool Filaire,
-                             float x1, float y1, float z1,
-                             float x2, float y2, float z2,
-                             float x3, float y3, float z3);
+    Forme(Shader *shader, GLDrawType glDrawType, int pointTaille, float point[], int indiceTaille, unsigned int indice[]);
+    static Forme *CreationTriangle(Shader *shader, GLDrawType glDrawType,
+                                   float x1, float y1, float z1,
+                                   float x2, float y2, float z2,
+                                   float x3, float y3, float z3);
+    static Forme *CreationRectangle(Shader *shader, GLDrawType glDrawType, float largeur, float hauteur);
     void Draw();
 
 private:
     GLuint m_vbo;
     GLuint m_vao;
+    GLuint m_ebo;
     GLDrawType m_glDrawType;
     Shader *m_shader;
 
-    void ConfigureVBO(float pointTaille, float point[], bool Filaire);
-    void ConfigureVAO();
+    int nombreTriangle = 1;
+    void ConfigureVBO(int pointTaille, float point[]);
+    void ConfigureEBO(int indiceTaille, unsigned int indice[]);
 };
 #endif // _FORME_H_
