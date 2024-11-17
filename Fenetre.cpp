@@ -52,6 +52,9 @@ int Fenetre::InitialisationGLAD()
 
 int Fenetre::CreationFenetre()
 {
+    int largeur= m_largeur;
+    int hauteur = m_hauteur;
+    const char* titre = m_titre;
     m_fenetre = glfwCreateWindow(m_largeur, m_hauteur, m_titre, NULL, NULL);
     if (!m_fenetre)
     {
