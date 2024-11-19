@@ -2,8 +2,4 @@ Information_directrice_moteur_de_jeu.md
 glad.zip
 
 # Ignorer les fichiers de configuration de l'IDE
-*.sublime-workspace
-*.sublime-project
-*.idea/
 *.vscode/
-*.vs/
