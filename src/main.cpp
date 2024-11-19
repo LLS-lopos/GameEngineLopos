@@ -2,8 +2,8 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
-#include "Fenetre.h"
-#include "Forme.h"
+#include "core/Fenetre.h"
+#include "RenduGraphique/Forme.h"
 
 int main()
 {
