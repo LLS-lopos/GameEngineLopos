@@ -3,7 +3,7 @@ Compilateur = g++
 Librairies = -I./Libs/ -I./Libs/include/ -I/usr/include/GL
 LIBS = -lGL -lGLU -lglut -lglfw -lm
 EXsource = Libs/src/glad.c
-Source = src/main.cpp src/core/Fenetre.cpp src/RenduGraphique/Forme.cpp src/RenduGraphique/Shader.cpp
+Source = src/main.cpp src/core/Fenetre.cpp src/RenduGraphique/Forme/Forme.cpp  src/RenduGraphique/Shader/Shader.cpp
 Objets = $(Source:.cpp=.o) $(EXsource:.c=.o)  # Ajoute glad.o
 Sortie = main
 
