@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include "core/Fenetre.h"
-#include "RenduGraphique/Forme.h"
+#include "RenduGraphique/Forme/Forme.h"
 
 int main()
 {
@@ -20,7 +20,7 @@ int main()
                                        "out vec4 FdfragColor;\n"
                                        "void main()\n"
                                        "{\n"
-                                       "   FdfragColor = vec4(1.0f, 0.0f, 0.0f, 1.0f);\n"
+                                       "   FdfragColor = vec4(0.8f, 0.8f, 0.8f, 1.0f);\n"
                                        "}\n";
 
     Shader *shader = new Shader(pointShaderSource, fragmentShaderSource);
