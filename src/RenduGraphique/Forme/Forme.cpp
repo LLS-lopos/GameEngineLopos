@@ -1,5 +1,4 @@
 #include "Forme.h"
-#include <cmath>
 
 Forme::Forme(Shader *shader, GLDrawType glDrawType, int pointTaille, float point[], int indiceTaille, unsigned int indice[], FormeType formeType, bool filaire)
 {
