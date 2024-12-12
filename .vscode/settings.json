@@ -1,3 +1,12 @@
 {
-    "makefile.configureOnOpen": true
+    "makefile.configureOnOpen": true,
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/home/luderick/Programation/Github_Clone/GameEngineLopos/moteur",
+            "binaryPath": "/home/luderick/Programation/Github_Clone/GameEngineLopos/moteur/main",
+            "binaryArgs": []
+        }
+    ],
+    "files.autoSave": "onFocusChange",
+    "editor.fontSize": 16
 }

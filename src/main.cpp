@@ -2,19 +2,19 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
-#include "core/Fenetre.h"
 #include "RenduGraphique/Forme/Forme.h"
+#include "core/Fenetre.h"
 
 int main()
 {
     Fenetre *fenetre = new Fenetre(800, 800, new char[]{"LOPOS ENGIME"});
 
     const char *pointShaderSource = "#version 330 core\n"
-                                     "layout(location = 0) in vec3 aPos;\n"
-                                     "void main()\n"
-                                     "{\n"
-                                     "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-                                     "}\n";
+                                    "layout(location = 0) in vec3 aPos;\n"
+                                    "void main()\n"
+                                    "{\n"
+                                    "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+                                    "}\n";
 
     const char *fragmentShaderSource = "#version 330 core\n"
                                        "out vec4 FdfragColor;\n"

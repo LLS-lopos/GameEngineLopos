@@ -5,7 +5,7 @@ LIBS = -lGL -lGLU -lglut -lglfw -lm
 EXsource = Libs/src/glad.c
 Source = src/main.cpp src/core/Fenetre.cpp src/RenduGraphique/Forme/Forme.cpp  src/RenduGraphique/Shader/Shader.cpp src/RenduGraphique/Forme/Fcarre.cpp src/RenduGraphique/Forme/Fcercle.cpp src/RenduGraphique/Forme/Fgrille.cpp src/RenduGraphique/Forme/FpolygoneRegulier.cpp src/RenduGraphique/Forme/Frectangle.cpp src/RenduGraphique/Forme/Ftriangle.cpp
 Objets = $(Source:.cpp=.o) $(EXsource:.c=.o)  # Ajoute glad.o
-Sortie = main
+Sortie = moteur/main
 
 # Règles
 .PHONY: all clean
@@ -28,3 +28,6 @@ Libs/src/glad.o: $(EXsource)
 # Règle de nettoyage
 clean:
 	rm -f $(Sortie) $(Objets)  # Supprime l'exécutable et les fichiers objets
+
+run:
+	./${Sortie}
