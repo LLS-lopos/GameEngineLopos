@@ -28,9 +28,10 @@ int main()
     Forme *tri = Forme::CreationTriangle(shader, GLDrawType::GL_DRAW_STREAM, 0.5);
     Forme *forme = Forme::CreationRectangle(shader, GLDrawType::GL_DRAW_STREAM, 1.0f, 0.5f);
     Forme *poly = Forme::CreationPolygoneRegulier(shader, GLDrawType::GL_DRAW_STREAM, 50, 0.4f);
-    Forme *carre = Forme::CreationCarre(shader, GLDrawType::GL_DRAW_STREAM, 0.1);
+    Forme *carre = Forme::CreationCarre(shader, GLDrawType::GL_DRAW_STREAM, 0.2);
     Forme *cercle = Forme::CreationCercle(shader, GLDrawType::GL_DRAW_STREAM, 20, 0.4f);
     Forme *grille = Forme::CreationGrille(shader, GLDrawType::GL_DRAW_STREAM, 15, 15);
+    Forme *rectangle = Forme::CreationRectangle(shader, GLDrawType::GL_DRAW_STREAM, 0.5, 0.3);
 
     while (!glfwWindowShouldClose(fenetre->recupFenetre())) // Boucle principale
     {
@@ -38,7 +39,7 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT);
 
         grille->Draw();
-        cercle->Draw();
+        rectangle->Draw();
 
         glfwPollEvents();
         glfwSwapBuffers(fenetre->recupFenetre());
