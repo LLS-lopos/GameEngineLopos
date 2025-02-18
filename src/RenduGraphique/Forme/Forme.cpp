@@ -6,15 +6,11 @@ Forme::Forme(Shader *shader, GLDrawType glDrawType, int pointTaille, Vecteur2D* 
     m_glDrawType = glDrawType;
     m_formeType = formeType;
     m_filaire = filaire;
-
     ConfigureVBO(sizeof(Vecteur2D) * pointTaille, point);
     ConfigureEBO(sizeof(int) * indiceTaille, indice);
-
     n_typeForme = indiceTaille;
-
     m_point = point;
     m_indice = indice;
-
     m_pointTaille = pointTaille;
     m_indiceTaille = indiceTaille;
 }
