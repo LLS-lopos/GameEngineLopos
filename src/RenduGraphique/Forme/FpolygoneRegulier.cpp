@@ -1,14 +1,16 @@
 #include "Forme.h"
 #include <cmath>
+#include <iostream>
 
 Forme *Forme::CreationPolygoneRegulier(Shader *shader, GLDrawType glDrawType, int nombre_poly, float rayon, bool filaire)
 {
-    int n_point = nombre_poly * 3;
+    int n_point = nombre_poly;
     int nombreIndice = (nombre_poly - 2) * 3;
-    float *point = new float[n_point];
-    unsigned int *indice = new unsigned int[nombreIndice];
+    Vecteur2D* point = new Vecteur2D[n_point];
+    unsigned int* indice = new unsigned int[nombreIndice];
 
     bool siPaire = (nombre_poly % 2) == 0;
+
     float angle = 0;
     if (siPaire)
         angle = M_PI / 2.0f + 2.0f * M_PI / nombre_poly / 2.0f;
@@ -23,17 +25,16 @@ Forme *Forme::CreationPolygoneRegulier(Shader *shader, GLDrawType glDrawType, in
 
         angle -= 2.0f * M_PI / nombre_poly;
 
-        point[i * 3] = x;
-        point[i * 3 + 1] = y;
-        point[i * 3 + 2] = 0.0f;
+        point[i].m_x = x; 
+        point[i].m_y = y;
     }
     // Initialisé les indices
-    for (int triangleID = 0; triangleID < nombre_poly - 2; triangleID++)
+    for (int triangleID = 0; triangleID < (nombre_poly - 2); triangleID++)
     {
-        indice[triangleID * 3] = 0.0f;
+        indice[triangleID * 3] = 0;
         indice[triangleID * 3 + 1] = triangleID + 1;
         indice[triangleID * 3 + 2] = triangleID + 2;
     }
-    Forme *polygone = new Forme(shader, glDrawType, n_point * sizeof(float), point, nombreIndice * sizeof(int), indice, FormeType::TRIANGLE, filaire);
+    Forme *polygone = new Forme(shader, glDrawType, n_point, point, nombreIndice, indice, FormeType::TRIANGLE, filaire);
     return polygone;    
 }

@@ -7,7 +7,7 @@
 class Fenetre
 {
 public:
-    Fenetre(int largeur = 600, int hauteur = 600, const char *titre = "Fenêtre OpenGL GLFW GLAD");
+    Fenetre(int largeur = 600, int hauteur = 600, const char *titre = "LOPOS GAME ENGIME");
     Fenetre(int largeur, int hauteur, const char *titre, int glMajeurVersion, int glMineureVersion);
     GLFWwindow *recupFenetre() const;
 

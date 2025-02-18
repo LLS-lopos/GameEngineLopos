@@ -1,6 +1,7 @@
 #ifndef _FORME_H_
 #define _FORME_H_
 #include "../Shader/Shader.h"
+#include "../Vecteur/Vecteur2D.h"
 #include <iostream>
 
 enum class GLDrawType
@@ -22,7 +23,8 @@ enum class FormeType
 class Forme
 {
 public:
-    Forme(Shader *shader, GLDrawType glDrawType, int pointTaille, float point[], int indiceTaille, unsigned int indice[], FormeType formeType = FormeType::TRIANGLE, bool filaire = false);
+    Forme(Shader *shader, GLDrawType glDrawType, int pointTaille, Vecteur2D* point, int indiceTaille, unsigned int* indice, FormeType formeType = FormeType::TRIANGLE, bool filaire = false);
+    ~Forme();
     static Forme *CreationRectangle(Shader *shader, GLDrawType glDrawType, float largeur, float hauteur, bool filaire = false);
     static Forme *CreationPolygoneRegulier(Shader *shader, GLDrawType glDrawType, int nombre_poly, float rayon, bool filaire = false);
     static Forme *CreationCercle(Shader *shader, GLDrawType glDrawType, int densiter, float rayon, bool filaire = false);
@@ -39,9 +41,14 @@ private:
     GLDrawType m_glDrawType;
     Shader *m_shader;
 
+    Vecteur2D* m_point = nullptr;
+    unsigned int* m_indice = nullptr;
+    int m_pointTaille;
+    int m_indiceTaille;
+
     bool m_filaire = false;
     int n_typeForme = 1;
-    void ConfigureVBO(int pointTaille, float point[]);
+    void ConfigureVBO(int pointTaille, Vecteur2D* point);
     void ConfigureEBO(int indiceTaille, unsigned int indice[]);
 };
 #endif // _FORME_H_
