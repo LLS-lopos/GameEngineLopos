@@ -4,3 +4,6 @@ glad.zip
 # Ignorer les fichiers de configuration de l'IDE
 *.vscode/
 moteur
+
+test/
+TestUNITAIRE
