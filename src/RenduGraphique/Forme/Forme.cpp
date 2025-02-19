@@ -1,11 +1,12 @@
 #include "Forme.h"
 
-Forme::Forme(Shader *shader, GLDrawType glDrawType, int pointTaille, Vecteur2D* point, int indiceTaille, unsigned int* indice, FormeType formeType, bool filaire)
+Forme::Forme(Shader *shader, GLDrawType glDrawType, Vecteur2D position, int pointTaille, Vecteur2D* point, int indiceTaille, unsigned int* indice, FormeType formeType, bool filaire)
 {
     m_shader = shader;
     m_glDrawType = glDrawType;
     m_formeType = formeType;
     m_filaire = filaire;
+    m_position = position;
     ConfigureVBO(sizeof(Vecteur2D) * pointTaille, point);
     ConfigureEBO(sizeof(int) * indiceTaille, indice);
     n_typeForme = indiceTaille;
@@ -25,7 +26,7 @@ Forme::~Forme()
     }
 }
 
-void Forme::Draw() // Dessiner la forme
+void Forme::Draw(Camera* camera, Fenetre* fenetre) // Dessiner la forme
 {
     if (m_filaire)
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -33,6 +34,9 @@ void Forme::Draw() // Dessiner la forme
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
     glEnableVertexAttribArray(0);
     m_shader->UtilisezShader();
+    m_shader->DefinirUniformVecteur2D("shapePosition", m_position);
+    m_shader->DefinirUniformVecteur2D("cameraHorizontalSize", camera->ObtenirPosition());
+    Vecteur2D taille = camera->ObtenirTailleVetH(fenetre->ObtenirLargeur(), fenetre->ObtenirHauteur());
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebo);
     glDrawElements((int)m_formeType, n_typeForme, GL_UNSIGNED_INT, 0);
     if (m_filaire)
@@ -51,3 +55,14 @@ void Forme::ConfigureEBO(int indiceTaille, unsigned int indice[])
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebo);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indiceTaille, indice, (int)m_glDrawType);
 }
+
+void Forme::DefinirPosition(const Vecteur2D& position)
+{
+    m_position = position;
+}
+
+Vecteur2D Forme::ObtenirPosition()const
+{
+    return m_position;
+}
+

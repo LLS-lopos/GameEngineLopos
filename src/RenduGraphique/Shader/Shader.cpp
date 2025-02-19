@@ -13,10 +13,10 @@ void Shader::UtilisezShader()
 int Shader::ConfigurerPointShader(const char *pointShaderSource)
 {
     unsigned int pointShader = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(pointShader, 1, &pointShaderSource, NULL);
-    glCompileShader(pointShader);
     int success = 0;
     char infoLog[512];
+    glShaderSource(pointShader, 1, &pointShaderSource, NULL);
+    glCompileShader(pointShader);
     glGetShaderiv(pointShader, GL_COMPILE_STATUS, &success);
     if (!success)
     {
@@ -59,4 +59,15 @@ void Shader::ConfigurerShaderProgram(int indexShaderPoint, int indexShaderFragme
     }
     glDeleteShader(indexShaderPoint);
     glDeleteShader(indexShaderFragment);
+}
+
+void Shader::DefinirUniformVecteur2D(std::string nom, Vecteur2D valeur)
+{
+    int location = glGetUniformLocation(m_shaderProgram, nom.c_str());
+    glUniform2f(location, valeur.m_x, valeur.m_y);
+}
+void Shader::DefinirUniformeFloat(std::string nom, float valeur)
+{
+    int location = glGetUniformLocation(m_shaderProgram, nom.c_str());
+    glUniform1f(location, valeur);
 }

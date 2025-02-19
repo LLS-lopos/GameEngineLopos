@@ -1,22 +1,32 @@
 #include "Fenetre.h"
 
-Fenetre::Fenetre(int largeur, int hauteur, const char *titre)
+Fenetre::Fenetre(int largeur, int hauteur, char *titre)
     : m_largeur(largeur), m_hauteur(hauteur), m_titre(titre), m_glMajeurVersion(3), m_glMineureVersion(3)
 {
     InitialisationGLFW();
     CreationFenetre();
     InitialisationGLAD();
-    // FermerFenetre();
+
+    glfwSetWindowUserPointer(m_fenetre, this);
+    glfwSetFramebufferSizeCallback(m_fenetre, DefinirTailleFrameBuffer);
 }
-Fenetre::Fenetre(int largeur, int hauteur, const char *titre, int glMajeurVersion, int glMineureVersion)
+void Fenetre::DefinirTailleFrameBuffer(GLFWwindow* fenetre, int largeur, int hauteur)
+{
+    Fenetre* win = (Fenetre*)glfwGetWindowUserPointer(fenetre);
+    win->RafraichirLH();
+    glViewport(0, 0, largeur, hauteur);
+}
+Fenetre::Fenetre(int largeur, int hauteur, char *titre, int glMajeurVersion, int glMineureVersion)
     : m_largeur(largeur), m_hauteur(hauteur), m_titre(titre), m_glMajeurVersion(glMajeurVersion), m_glMineureVersion(glMineureVersion)
 {
     InitialisationGLFW();
     CreationFenetre();
     InitialisationGLAD();
-    // FermerFenetre();
 }
-
+Fenetre::~Fenetre()
+{
+    delete m_titre;
+}
 int Fenetre::InitialisationGLFW()
 {
     // Initialisation de GLFW
@@ -67,17 +77,33 @@ int Fenetre::CreationFenetre()
     // glfwSetFramebufferSizeCallback(m_fenetre, Redimensionner);
     return 1;
 }
+GLFWwindow *Fenetre::recupFenetre() const
+{
+    return m_fenetre;
+}
+
+float Fenetre::ObtenirLargeur()const
+{
+    return m_largeur;
+}
+float Fenetre::ObtenirHauteur()const
+{
+    return m_hauteur;
+}
+void Fenetre::RafraichirLH()
+{
+    glfwGetWindowSize(m_fenetre, &m_largeur, &m_hauteur);
+}
+
+/* -----------------------------------
 int Fenetre::FermerFenetre()
 {
     if (glfwGetKey(m_fenetre, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(m_fenetre, true);
     return 1;
 }
-GLFWwindow *Fenetre::recupFenetre() const
-{
-    return m_fenetre;
-}
-/* -----------------------------------
+
+
 void Fenetre::Redimensionner(GLFWwindow *m_fenetre, int m_largeur, int m_hauteur)
 {
     // make sure the viewport matches the new window dimensions; note that width and

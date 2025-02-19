@@ -1,5 +1,4 @@
 #ifndef _VECTEUR2D_H_
-
 #define _VECTEUR2D_H_
 #include <ostream>
 #include <cmath>

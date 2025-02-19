@@ -7,22 +7,28 @@
 class Fenetre
 {
 public:
-    Fenetre(int largeur = 600, int hauteur = 600, const char *titre = "LOPOS GAME ENGIME");
-    Fenetre(int largeur, int hauteur, const char *titre, int glMajeurVersion, int glMineureVersion);
+    Fenetre(int largeur, int hauteur, char *titre);
+    ~Fenetre();
+    Fenetre(int largeur, int hauteur, char *titre, int glMajeurVersion, int glMineureVersion);
     GLFWwindow *recupFenetre() const;
+    float ObtenirLargeur()const;
+    float ObtenirHauteur()const;
+    void RafraichirLH();
 
+    static void DefinirTailleFrameBuffer(GLFWwindow* fenetre, int largeur, int hauteur);
 private:
-    int m_glMajeurVersion;
-    int m_glMineureVersion;
-    int m_largeur;
-    int m_hauteur;
-    const char *m_titre = new char[]{""};
+    int m_glMajeurVersion = 3;
+    int m_glMineureVersion = 3;
+
+    int m_largeur = 1280;
+    int m_hauteur = 720;
+    char *m_titre;
 
     GLFWwindow *m_fenetre;
     int InitialisationGLFW();
     int InitialisationGLAD();
     int CreationFenetre();
-    int FermerFenetre();
+    // int FermerFenetre();
     // void Redimensionner(GLFWwindow *m_fenetre, int m_largeur, int m_hauteur);
 };
 

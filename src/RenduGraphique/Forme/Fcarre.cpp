@@ -1,6 +1,6 @@
 #include "Forme.h"
 
-Forme *Forme::CreationCarre(Shader *shader, GLDrawType glDrawType, float rayon, bool filaire)
+Forme *Forme::CreationCarre(Shader *shader, GLDrawType glDrawType, Vecteur2D position, float rayon, bool filaire)
 {
-    return CreationPolygoneRegulier(shader, glDrawType, 4, rayon, filaire);
+    return CreationPolygoneRegulier(shader, glDrawType, position, 4, rayon, filaire);
 }
