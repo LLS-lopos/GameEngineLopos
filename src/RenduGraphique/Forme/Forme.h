@@ -42,8 +42,8 @@ private:
     GLuint m_vbo;
     GLuint m_vao;
     GLuint m_ebo;
-    FormeType m_formeType;
     GLDrawType m_glDrawType;
+    FormeType m_formeType;
     Shader *m_shader;
     Vecteur2D* m_point = nullptr;
     Vecteur2D m_position;

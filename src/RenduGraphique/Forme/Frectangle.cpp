@@ -13,7 +13,7 @@ Forme *Forme::CreationRectangle(Shader *shader, GLDrawType glDrawType, Vecteur2D
     {
         0, 2, 1,
         0, 3, 2
-        };
+    };
     Forme *rectangle = new Forme(shader, glDrawType, position, 4, point, 6, indice, FormeType::TRIANGLE, filaire);
     return rectangle;
 }
