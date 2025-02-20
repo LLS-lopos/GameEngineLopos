@@ -28,8 +28,7 @@ private:
     int InitialisationGLFW();
     int InitialisationGLAD();
     int CreationFenetre();
-    // int FermerFenetre();
-    // void Redimensionner(GLFWwindow *m_fenetre, int m_largeur, int m_hauteur);
+    //int FermerFenetre();
 };
 
 #endif // _FENETRE_H_

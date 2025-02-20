@@ -22,9 +22,9 @@ void Camera::DefinirOrientation(bool siHorizontal)
 Vecteur2D Camera::ObtenirTailleVetH(float largeur, float hauteur)
 {
     if (m_siHorizontal)
-        return Vecteur2D(m_taille, m_taille * hauteur / largeur);
+        return Vecteur2D(m_taille, ((m_taille * hauteur) / largeur));
     else
-        return Vecteur2D(m_taille * largeur / hauteur, m_taille);
+        return Vecteur2D(((m_taille * largeur) / hauteur), m_taille);
 }
 
 Vecteur2D Camera::ObtenirPosition()const

@@ -74,7 +74,6 @@ int Fenetre::CreationFenetre()
     }
     std::cout << "Fenêtre créée avec succès." << std::endl;
     glfwMakeContextCurrent(m_fenetre); // Créer un contexte OpenGL
-    // glfwSetFramebufferSizeCallback(m_fenetre, Redimensionner);
     return 1;
 }
 GLFWwindow *Fenetre::recupFenetre() const
@@ -101,12 +100,4 @@ int Fenetre::FermerFenetre()
     if (glfwGetKey(m_fenetre, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(m_fenetre, true);
     return 1;
-}
-
-
-void Fenetre::Redimensionner(GLFWwindow *m_fenetre, int m_largeur, int m_hauteur)
-{
-    // make sure the viewport matches the new window dimensions; note that width and
-    // height will be significantly larger than specified on retina displays.
-    glViewport(0, 0, m_largeur, m_hauteur);
 }*/

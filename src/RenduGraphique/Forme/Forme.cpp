@@ -35,8 +35,11 @@ void Forme::Draw(Camera* camera, Fenetre* fenetre) // Dessiner la forme
     glEnableVertexAttribArray(0);
     m_shader->UtilisezShader();
     m_shader->DefinirUniformVecteur2D("shapePosition", m_position);
+    m_shader->DefinirUniformVecteur2D("cameraPosition", camera->ObtenirPosition());
+    Vecteur2D taille = camera->ObtenirTailleVetH(fenetre->ObtenirLargeur(), fenetre->ObtenirHauteur());
+    m_shader->DefinirUniformeFloat("cameraHorizontalSize", taille.m_x);
+    m_shader->DefinirUniformeFloat("cameraVerticalSize", taille.m_y);
     
-    //Vecteur2D taille = camera->ObtenirTailleVetH(fenetre->ObtenirLargeur(), fenetre->ObtenirHauteur());
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebo);
     glDrawElements((int)m_formeType, n_typeForme, GL_UNSIGNED_INT, 0);
     if (m_filaire)
