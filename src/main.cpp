@@ -35,21 +35,21 @@ int main()
     Camera* cam = new Camera(cameraPos, 10, true);
     Shader *shader = new Shader(pointShaderSource, fragmentShaderSource);
 
-    Forme *tri = Forme::CreationTriangle(shader, GLDrawType::GL_DRAW_STREAM, Pos2, 0.5);
-    //Forme *poly = Forme::CreationPolygoneRegulier(shader, GLDrawType::GL_DRAW_STREAM, 10, 0.4f);
-    Forme *carre = Forme::CreationCarre(shader, GLDrawType::GL_DRAW_STREAM, Pos1, 0.2);
-    //Forme *cercle = Forme::CreationCercle(shader, GLDrawType::GL_DRAW_STREAM, 50, 0.4f);
+    //Forme *tri = Forme::CreationTriangle(shader, GLDrawType::GL_DRAW_STREAM, cameraPos, 0.5);
+    //Forme *poly = Forme::CreationPolygoneRegulier(shader, GLDrawType::GL_DRAW_STREAM, cameraPos, 10, 0.4f);
+    //Forme *carre = Forme::CreationCarre(shader, GLDrawType::GL_DRAW_STREAM, cameraPos, 0.2);
+    Forme *cercle = Forme::CreationCercle(shader, GLDrawType::GL_DRAW_STREAM, cameraPos, 50, 0.4f);
     Forme *grille = Forme::CreationGrille(shader, GLDrawType::GL_DRAW_STREAM, cameraPos, 15, 15);
-    //Forme *rectangle = Forme::CreationRectangle(shader, GLDrawType::GL_DRAW_STREAM, 0.8, 0.3);
+    //Forme *rectangle = Forme::CreationRectangle(shader, GLDrawType::GL_DRAW_STREAM, cameraPos, 0.8, 0.3);
 
     while (!glfwWindowShouldClose(fenetre->recupFenetre())) // Boucle principale
     {
         glClearColor(0.2f, 0.2f, 0.2f, 1.0f); // Couleur de fond
         glClear(GL_COLOR_BUFFER_BIT);
-        carre->DefinirPosition(Pos2);
-        carre->Draw(cam, fenetre);
-        tri->DefinirPosition(Pos1);
-        tri->Draw(cam, fenetre);
+        cercle->DefinirPosition(Pos2);
+        cercle->Draw(cam, fenetre);
+        cercle->DefinirPosition(Pos1);
+        cercle->Draw(cam, fenetre);
         grille->Draw(cam, fenetre);
 
         glfwSwapBuffers(fenetre->recupFenetre());
