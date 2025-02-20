@@ -25,12 +25,12 @@ int main()
                                         "out vec4 FdfragColor;\n"
                                         "void main()\n"
                                         "{\n"
-                                        "	FdfragColor = vec4(0.8f, 0.8f, 0.8f, 1.0f)\n;"
+                                        "	FdfragColor = vec4(1.0f, 1.0f, 1.0f, 1.0f)\n;"
                                         "}\n";    
     
     Vecteur2D cameraPos = Vecteur2D(0.0f, 0.0f);
-    Vecteur2D Pos1 = Vecteur2D(0.5f, 0.0f);
-    Vecteur2D Pos2 = Vecteur2D(-0.5f, -0.0f);
+    Vecteur2D Pos1 = Vecteur2D(0.5f, 0.5f);
+    Vecteur2D Pos2 = Vecteur2D(-0.5f, 0.5f);
 
     Camera* cam = new Camera(cameraPos, 10, true);
     Shader *shader = new Shader(pointShaderSource, fragmentShaderSource);
@@ -49,6 +49,10 @@ int main()
         cercle->DefinirPosition(Pos2);
         cercle->Draw(cam, fenetre);
         cercle->DefinirPosition(Pos1);
+        cercle->Draw(cam, fenetre);
+        cercle->DefinirPosition(Vecteur2D(0.5f, -0.5f));
+        cercle->Draw(cam, fenetre);
+        cercle->DefinirPosition(Vecteur2D(-0.5f, -0.5f));
         cercle->Draw(cam, fenetre);
         grille->Draw(cam, fenetre);
 
