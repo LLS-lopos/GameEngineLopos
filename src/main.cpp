@@ -39,12 +39,12 @@ int main()
     Camera* cam = new Camera(cameraPos, 10, true);
     Shader *shader = new Shader(pointShaderSource, fragmentShaderSource);
 
-    //Forme *tri = Forme::CreationTriangle(shader, GLDrawType::GL_DRAW_STREAM, cameraPos, 0.5);
-    //Forme *poly = Forme::CreationPolygoneRegulier(shader, GLDrawType::GL_DRAW_STREAM, cameraPos, 10, 0.4f);
-    //Forme *carre = Forme::CreationCarre(shader, GLDrawType::GL_DRAW_STREAM, cameraPos, 0.2);
+    Forme *tri = Forme::CreationTriangle(shader, GLDrawType::GL_DRAW_STREAM, cameraPos, 0.5);
+    Forme *poly = Forme::CreationPolygoneRegulier(shader, GLDrawType::GL_DRAW_STREAM, cameraPos, 10, 0.4f);
+    Forme *carre = Forme::CreationCarre(shader, GLDrawType::GL_DRAW_STREAM, cameraPos, 0.2);
     Forme *cercle = Forme::CreationCercle(shader, GLDrawType::GL_DRAW_STREAM, cameraPos, 50, 0.4f, false);
     Forme *grille = Forme::CreationGrille(shader, GLDrawType::GL_DRAW_STREAM, cameraPos, 15, 15);
-    //Forme *rectangle = Forme::CreationRectangle(shader, GLDrawType::GL_DRAW_STREAM, cameraPos, 0.8, 0.3);
+    Forme *rectangle = Forme::CreationRectangle(shader, GLDrawType::GL_DRAW_STREAM, cameraPos, 1.7, 0.8);
 
     while (!glfwWindowShouldClose(fenetre->recupFenetre())) // Boucle principale
     {
@@ -59,6 +59,14 @@ int main()
         cercle->DefinirPosition(Vecteur2D(-0.5f, -0.5f));
         cercle->Draw(cam, fenetre);
         grille->Draw(cam, fenetre);
+        carre->DefinirPosition(Vecteur2D(1.10, 1.10));
+        carre->Draw(cam, fenetre);
+        poly->DefinirPosition(Vecteur2D(0, 2.0));
+        poly->Draw(cam, fenetre);
+        tri->DefinirPosition(Vecteur2D(-1.5, 1));
+        tri->Draw(cam, fenetre);
+        rectangle->DefinirPosition(Vecteur2D(0, -2.0));
+        rectangle->Draw(cam, fenetre);
 
         glfwSwapBuffers(fenetre->recupFenetre());
         glfwPollEvents();

@@ -7,9 +7,9 @@
 class Fenetre
 {
 public:
-    Fenetre(int largeur, int hauteur, char *titre);
+    Fenetre(int largeur, int hauteur, const char *titre);
     ~Fenetre();
-    Fenetre(int largeur, int hauteur, char *titre, int glMajeurVersion, int glMineureVersion);
+    Fenetre(int largeur, int hauteur, const char *titre, int glMajeurVersion, int glMineureVersion);
     GLFWwindow *recupFenetre() const;
     float ObtenirLargeur()const;
     float ObtenirHauteur()const;
@@ -22,7 +22,7 @@ private:
 
     int m_largeur = 1280;
     int m_hauteur = 720;
-    char *m_titre;
+    const char *m_titre;
 
     GLFWwindow *m_fenetre;
     int InitialisationGLFW();

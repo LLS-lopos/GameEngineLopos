@@ -1,6 +1,6 @@
 #include "Fenetre.h"
 
-Fenetre::Fenetre(int largeur, int hauteur, char *titre)
+Fenetre::Fenetre(int largeur, int hauteur, const char *titre)
     : m_largeur(largeur), m_hauteur(hauteur), m_titre(titre), m_glMajeurVersion(3), m_glMineureVersion(3)
 {
     InitialisationGLFW();
@@ -16,7 +16,7 @@ void Fenetre::DefinirTailleFrameBuffer(GLFWwindow* fenetre, int largeur, int hau
     win->RafraichirLH();
     glViewport(0, 0, largeur, hauteur);
 }
-Fenetre::Fenetre(int largeur, int hauteur, char *titre, int glMajeurVersion, int glMineureVersion)
+Fenetre::Fenetre(int largeur, int hauteur, const char *titre, int glMajeurVersion, int glMineureVersion)
     : m_largeur(largeur), m_hauteur(hauteur), m_titre(titre), m_glMajeurVersion(glMajeurVersion), m_glMineureVersion(glMineureVersion)
 {
     InitialisationGLFW();
