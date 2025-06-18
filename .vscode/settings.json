@@ -79,5 +79,9 @@
   },
   "[vert]": {
     "editor.defaultFormatter": "raczzalan.webgl-glsl-editor"
+  },
+  "files.associations": {
+    "new": "cpp",
+    "cmath": "cpp"
   }
 }

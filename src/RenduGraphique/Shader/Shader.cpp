@@ -66,6 +66,14 @@ void Shader::DefinirUniformVecteur2D(std::string nom, Vecteur2D valeur)
     int location = glGetUniformLocation(m_shaderProgram, nom.c_str());
     glUniform2f(location, valeur.m_x, valeur.m_y);
 }
+
+void Shader::DefinirUniformVecteur4D(std::string nom, float r, float g, float b, float a)
+{
+    UtilisezShader();
+    int location = glGetUniformLocation(m_shaderProgram, nom.c_str());
+    glUniform4f(location, r, g, b, a);
+}
+
 void Shader::DefinirUniformeFloat(std::string nom, float valeur)
 {
     int location = glGetUniformLocation(m_shaderProgram, nom.c_str());

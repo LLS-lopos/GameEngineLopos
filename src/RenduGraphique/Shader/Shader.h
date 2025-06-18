@@ -12,6 +12,7 @@ public:
     Shader(const char *pointShaderSource, const char *fragmentShaderSource);
     void UtilisezShader();
     void DefinirUniformVecteur2D(std::string nom, Vecteur2D valeur);
+    void DefinirUniformVecteur4D(std::string nom, float r, float g, float b, float a);
     void DefinirUniformeFloat(std::string nom, float valeur);
 
 private:

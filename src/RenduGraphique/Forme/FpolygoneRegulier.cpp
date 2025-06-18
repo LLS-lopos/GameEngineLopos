@@ -2,7 +2,7 @@
 #include <cmath>
 #include <iostream>
 
-Forme *Forme::CreationPolygoneRegulier(Shader *shader, GLDrawType glDrawType, Vecteur2D position, int nombre_poly, float rayon, bool filaire)
+Forme *Forme::CreationPolygoneRegulier(Shader *shader, GLDrawType glDrawType, Transform transform, int nombre_poly, float rayon, bool filaire)
 {
     int n_point = nombre_poly;
     int nombreIndice = (nombre_poly - 2) * 3;
@@ -35,6 +35,6 @@ Forme *Forme::CreationPolygoneRegulier(Shader *shader, GLDrawType glDrawType, Ve
         indice[triangleID * 3 + 1] = triangleID + 1;
         indice[triangleID * 3 + 2] = triangleID + 2;
     }
-    Forme *polygone = new Forme(shader, glDrawType, position, n_point, point, nombreIndice, indice, FormeType::TRIANGLE, filaire);
+    Forme *polygone = new Forme(shader, glDrawType, transform, n_point, point, nombreIndice, indice, FormeType::TRIANGLE, filaire);
     return polygone;    
 }

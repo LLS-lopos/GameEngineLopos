@@ -1,12 +1,12 @@
 #include "Forme.h"
 
-Forme::Forme(Shader *shader, GLDrawType glDrawType, Vecteur2D position, int pointTaille, Vecteur2D* point, int indiceTaille, unsigned int* indice, FormeType formeType, bool filaire)
+Forme::Forme(Shader *shader, GLDrawType glDrawType, Transform transform, int pointTaille, Vecteur2D* point, int indiceTaille, unsigned int* indice, FormeType formeType, bool filaire)
 {
     m_shader = shader;
     m_glDrawType = glDrawType;
     m_formeType = formeType;
     m_filaire = filaire;
-    m_position = position;
+    m_transform = transform;
     ConfigureVBO(sizeof(Vecteur2D) * pointTaille, point);
     ConfigureEBO(sizeof(int) * indiceTaille, indice);
     n_typeForme = indiceTaille;
@@ -34,7 +34,9 @@ void Forme::Draw(Camera* camera, Fenetre* fenetre) // Dessiner la forme
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
     glEnableVertexAttribArray(0);
     m_shader->UtilisezShader();
-    m_shader->DefinirUniformVecteur2D("shapePosition", m_position);
+    m_shader->DefinirUniformVecteur2D("shapePosition", m_transform.m_position);
+    m_shader->DefinirUniformVecteur2D("shapeScale", m_transform.m_echelle);
+    m_shader->DefinirUniformeFloat("shapeAngle", (m_transform.m_angle * M_PI / 180));
     m_shader->DefinirUniformVecteur2D("cameraPosition", camera->ObtenirPosition());
     Vecteur2D taille = camera->ObtenirTailleVetH(fenetre->ObtenirLargeur(), fenetre->ObtenirHauteur());
     m_shader->DefinirUniformeFloat("cameraHorizontalSize", taille.m_x);
@@ -61,11 +63,29 @@ void Forme::ConfigureEBO(int indiceTaille, unsigned int indice[])
 
 void Forme::DefinirPosition(const Vecteur2D& position)
 {
-    m_position = position;
+    m_transform.m_position = position;
+}
+
+void Forme::DefinirEchelle(const Vecteur2D& echelle)
+{
+    m_transform.m_echelle = echelle;
+}
+
+void Forme::DefinirRotation(const float angle)
+{
+    m_transform.m_angle = angle;
 }
 
 Vecteur2D Forme::ObtenirPosition()const
 {
-    return m_position;
+    return m_transform.m_position;
 }
 
+void Forme::RecupPoint(unsigned int index, const Vecteur2D& vecteur)
+{
+    if (index >= m_pointTaille)
+        return;
+
+    m_point[index] = vecteur;
+    ConfigureVBO(sizeof(Vecteur2D) * m_pointTaille, m_point);
+}

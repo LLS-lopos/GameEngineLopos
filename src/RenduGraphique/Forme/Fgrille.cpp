@@ -1,6 +1,6 @@
 #include "Forme.h"
 
-Forme *Forme::CreationGrille(Shader *shader, GLDrawType glDrawType, Vecteur2D position, int n_carre_l, int n_carre_h, bool filaire)
+Forme *Forme::CreationGrille(Shader *shader, GLDrawType glDrawType, Transform transform, int n_carre_l, int n_carre_h, bool filaire)
 {
     int n_point = ((n_carre_l + 1) + (n_carre_h + 1)) * 2;
     Vecteur2D* point = new Vecteur2D[n_point];
@@ -34,6 +34,6 @@ Forme *Forme::CreationGrille(Shader *shader, GLDrawType glDrawType, Vecteur2D po
         indice[index] = index;
         indice[index + 1] = index + 1;
     }
-    Forme* grille = new Forme(shader, glDrawType, position, n_point, point, n_indice, indice, FormeType::LIGNE, filaire);
+    Forme* grille = new Forme(shader, glDrawType, transform, n_point, point, n_indice, indice, FormeType::LIGNE, filaire);
     return grille;
 }

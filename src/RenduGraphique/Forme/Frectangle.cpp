@@ -1,6 +1,6 @@
 #include "Forme.h"
 
-Forme *Forme::CreationRectangle(Shader *shader, GLDrawType glDrawType, Vecteur2D position, float largeur, float hauteur, bool filaire)
+Forme *Forme::CreationRectangle(Shader *shader, GLDrawType glDrawType, Transform transform, float largeur, float hauteur, bool filaire)
 {
     Vecteur2D* point = new Vecteur2D[] 
     {
@@ -14,6 +14,6 @@ Forme *Forme::CreationRectangle(Shader *shader, GLDrawType glDrawType, Vecteur2D
         0, 2, 1,
         0, 3, 2
     };
-    Forme *rectangle = new Forme(shader, glDrawType, position, 4, point, 6, indice, FormeType::TRIANGLE, filaire);
+    Forme *rectangle = new Forme(shader, glDrawType, transform, 4, point, 6, indice, FormeType::TRIANGLE, filaire);
     return rectangle;
 }

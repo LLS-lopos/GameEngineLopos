@@ -5,6 +5,7 @@
 #include "../Vecteur/Vecteur2D.h"
 #include "../../core/Camera.h"
 #include "../../core/Fenetre.h"
+#include "../Vecteur/Transform.h"
 #include <iostream>
 
 enum class GLDrawType
@@ -26,17 +27,20 @@ enum class FormeType
 class Forme
 {
 public:
-    Forme(Shader *shader, GLDrawType glDrawType, Vecteur2D position, int pointTaille, Vecteur2D* point, int indiceTaille, unsigned int* indice, FormeType formeType = FormeType::TRIANGLE, bool filaire = false);
+    Forme(Shader *shader, GLDrawType glDrawType, Transform transform, int pointTaille, Vecteur2D* point, int indiceTaille, unsigned int* indice, FormeType formeType = FormeType::TRIANGLE, bool filaire = false);
     ~Forme();
-    static Forme *CreationRectangle(Shader *shader, GLDrawType glDrawType, Vecteur2D position, float largeur, float hauteur, bool filaire = false);
-    static Forme *CreationPolygoneRegulier(Shader *shader, GLDrawType glDrawType, Vecteur2D position, int nombre_poly, float rayon, bool filaire = false);
-    static Forme *CreationCercle(Shader *shader, GLDrawType glDrawType, Vecteur2D position, int densiter, float rayon, bool filaire = false);
-    static Forme *CreationCarre(Shader *shader, GLDrawType glDrawType, Vecteur2D position, float rayon, bool filaire = false);
-    static Forme *CreationTriangle(Shader *shader, GLDrawType glDrawType, Vecteur2D position, float rayon, bool filaire = false);
-    static Forme *CreationGrille(Shader *shader, GLDrawType glDrawType, Vecteur2D position, int n_carre_l, int n_carre_h, bool filaire = false);
+    static Forme *CreationRectangle(Shader *shader, GLDrawType glDrawType, Transform transform, float largeur, float hauteur, bool filaire = false);
+    static Forme *CreationPolygoneRegulier(Shader *shader, GLDrawType glDrawType, Transform transform, int nombre_poly, float rayon, bool filaire = false);
+    static Forme *CreationCercle(Shader *shader, GLDrawType glDrawType, Transform transform, int densiter, float rayon, bool filaire = false);
+    static Forme *CreationCarre(Shader *shader, GLDrawType glDrawType, Transform transform, float rayon, bool filaire = false);
+    static Forme *CreationTriangle(Shader *shader, GLDrawType glDrawType, Transform transform, float rayon, bool filaire = false);
+    static Forme *CreationGrille(Shader *shader, GLDrawType glDrawType, Transform transform, int n_carre_l, int n_carre_h, bool filaire = false);
     void Draw(Camera* camera, Fenetre* fenetre);
     void DefinirPosition(const Vecteur2D& position);
+    void DefinirEchelle(const Vecteur2D& echelle);
+    void DefinirRotation(const float angle);
     Vecteur2D ObtenirPosition()const;
+    void RecupPoint(unsigned int index, const Vecteur2D& vecteur);
 
 private:
     GLuint m_vbo;
@@ -46,7 +50,7 @@ private:
     FormeType m_formeType;
     Shader *m_shader;
     Vecteur2D* m_point = nullptr;
-    Vecteur2D m_position;
+    Transform m_transform;
     unsigned int* m_indice = nullptr;
     int m_pointTaille;
     int m_indiceTaille;
