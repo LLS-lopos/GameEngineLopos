@@ -16,7 +16,7 @@ public:
     void DefinirPosition(const Vecteur2D& position);
     void DefinirTaille(float taille);
     void DefinirOrientation(bool siHorizontal);
-    Vecteur2D ObtenirTailleVetH(float largeur, float hauteur);
+    Vecteur2D ObtenirTailleVetH(float largeur, float hauteur)const;
 
     Vecteur2D ObtenirPosition()const;
     float ObtenirTaille()const;

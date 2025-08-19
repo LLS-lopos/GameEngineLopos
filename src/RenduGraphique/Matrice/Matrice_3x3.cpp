@@ -293,7 +293,7 @@ Vecteur2D operator*(const Vecteur2D& b, const Matrice3x3& a)
 {
 	return Vecteur2D(b.m_x * a.m[0][0] + b.m_y * a.m[0][1] + 1.0f * a.m[0][2], b.m_x * a.m[1][0] + b.m_y * a.m[1][1] + 1.0f * a.m[1][2]);
 }
-
+/*
 Vecteur3D operator*(const Matrice3x3& a, const Vecteur3D& b)
 {
 	return Vecteur3D(
@@ -305,13 +305,13 @@ Vecteur3D operator*(const Matrice3x3& a, const Vecteur3D& b)
 
 Vecteur3D operator*(const Vecteur3D& b, const Matrice3x3& a)
 {
-	return Vecteur3D(
+	return Vector3D(
 		b.m_x * a.m[0][0] + b.m_y * a.m[1][0] + b.m_z * a.m[2][0],
 		b.m_x * a.m[0][1] + b.m_y * a.m[1][1] + b.m_z * a.m[2][1],
 		b.m_x * a.m[0][2] + b.m_y * a.m[1][2] + b.m_z * a.m[2][2]
 	);
 }
-
+*/
 
 std::array<float, 9> Matrice3x3::GetAsArray() const
 {

@@ -6,39 +6,19 @@
 #include "core/Fenetre.h"
 #include "RenduGraphique/Vecteur/FormeVec2D.h"
 #include "RenduGraphique/OperationVecteur/TranformationUtils.h"
+#include "utilitaire/SysFichier.h"
 
 int main()
 {
     Fenetre *fenetre = new Fenetre(1280, 720, "LOPOS GAME ENGIME"); 
 
-    const char *pointShaderSource = "#version 330 core\n"
-                                    "layout (location = 0) in vec3 aPos;\n"
-                                    "uniform vec2 shapePosition;\n"
-                                    "uniform vec2 shapeScale;\n"
-                                    "uniform float shapeAngle;\n"
-                                    "uniform vec2 cameraPosition;\n"
-                                    "uniform float cameraVerticalSize;\n"
-                                    "uniform float cameraHorizontalSize;\n"		
-                                    "void main()\n"
-                                    "{\n"
-                                        "vec2 scaleVertex = vec2(aPos.x * shapeScale.x, aPos.y * shapeScale.y);\n"
-                                        "vec2 rotateVertex = vec2(0.0f, 0.0f);\n"
-                                        "rotateVertex.x = scaleVertex.x * cos(shapeAngle) - scaleVertex.y * sin(shapeAngle);\n"
-                                        "rotateVertex.y = scaleVertex.y * cos(shapeAngle) + scaleVertex.x * sin(shapeAngle);\n"
-                                        "vec2 verticeInWorldSpace = vec2(shapePosition.x + rotateVertex.x, shapePosition.y + rotateVertex.y);\n"
-                                        "vec2 verticeInCameraSpace = verticeInWorldSpace - cameraPosition;\n"
-                                        "vec2 verticeInNDCSpace;\n"
-                                        "verticeInNDCSpace.x = verticeInCameraSpace.x*2.0/cameraHorizontalSize;\n"
-                                        "verticeInNDCSpace.y = verticeInCameraSpace.y*2.0/cameraVerticalSize;\n"
-                                        "gl_Position = vec4(verticeInNDCSpace.x, verticeInNDCSpace.y, aPos.z, 1.0);\n"
-                                    "}\n";
+    // Chemin relatif depuis le répertoire d'exécution
+    std::string fs_source = SystemFichier::recup_contenu_fichier("moteur/assets/fragmentShader/fs_defaut.frag");
+    std::string vs_source = SystemFichier::recup_contenu_fichier("moteur/assets/vertexShader/vs_defaut.vert");
 
-    const char *fragmentShaderSource = "#version 330 core\n"
-                                        "out vec4 FdfragColor;\n"
-                                        "void main()\n"
-                                        "{\n"
-                                        "	FdfragColor = vec4(1.0f, 1.0f, 1.0f, 1.0f)\n;"
-                                        "}\n";
+    const char *pointShaderSource = vs_source.c_str();
+
+    const char *fragmentShaderSource = fs_source.c_str();
     
     Vecteur2D cameraPos = Vecteur2D(0.0f, 0.0f);
     Camera* cam = new Camera(cameraPos, 10, true);

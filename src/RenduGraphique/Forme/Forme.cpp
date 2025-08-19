@@ -1,4 +1,8 @@
 #include "Forme.h"
+#include <iostream>
+#include <cmath>
+#define _USE_MATH_DEFINES
+#include <math.h>
 
 Forme::Forme(Shader *shader, GLDrawType glDrawType, Transform transform, int pointTaille, Vecteur2D* point, int indiceTaille, unsigned int* indice, FormeType formeType, bool filaire)
 {
