@@ -7,8 +7,16 @@ Forme::Forme(Shader *shader, GLDrawType glDrawType, Transform transform, int poi
     m_formeType = formeType;
     m_filaire = filaire;
     m_transform = transform;
+
+    ConfigureVAO();
+
+    GenererVBO();
     ConfigureVBO(sizeof(Vecteur2D) * pointTaille, point);
+    ConfigureVertex();
+
+    GenererEBO();
     ConfigureEBO(sizeof(int) * indiceTaille, indice);
+
     n_typeForme = indiceTaille;
     m_point = point;
     m_indice = indice;
@@ -30,39 +38,46 @@ void Forme::Draw(Camera* camera, Fenetre* fenetre) // Dessiner la forme
 {
     if (m_filaire)
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-    glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
-    glEnableVertexAttribArray(0);
+    
     m_shader->UtilisezShader();
     m_shader->DefinirUniformeMatrice3x3("model", m_transform.TransformeMatrice());
     m_shader->DefinirUniformeMatrice3x3("vue", camera->VueMatrice());
     m_shader->DefinirUniformeMatrice3x3("NDCespace", camera->NDCespaceMatrice(fenetre->ObtenirLargeur(), fenetre->ObtenirHauteur()));
 
-    /*
-    m_shader->DefinirUniformVecteur2D("shapePosition", m_transform.m_position);
-    m_shader->DefinirUniformVecteur2D("shapeScale", m_transform.m_echelle);
-    m_shader->DefinirUniformeFloat("shapeAngle", (m_transform.m_angle * M_PI / 180));
-    m_shader->DefinirUniformVecteur2D("cameraPosition", camera->ObtenirPosition());
-    Vecteur2D taille = camera->ObtenirTailleVetH(fenetre->ObtenirLargeur(), fenetre->ObtenirHauteur());
-    m_shader->DefinirUniformeFloat("cameraHorizontalSize", taille.m_x);
-    m_shader->DefinirUniformeFloat("cameraVerticalSize", taille.m_y);
-    */
-    
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebo);
+    glBindVertexArray(m_vao);
     glDrawElements((int)m_formeType, n_typeForme, GL_UNSIGNED_INT, 0);
+    
     if (m_filaire)
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
-void Forme::ConfigureVBO(int pointTaille, Vecteur2D* point)
+void Forme::ConfigureVAO()
+{
+    glGenVertexArrays(1, &m_vao);
+}
+void Forme::ConfigureVertex()
+{
+    glBindVertexArray(m_vao);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+}
+void Forme::GenererVBO()
 {
     glGenBuffers(1, &m_vbo);
+}
+void Forme::GenererEBO()
+{
+    glGenBuffers(1, &m_ebo);
+}
+void Forme::ConfigureVBO(int pointTaille, Vecteur2D* point)
+{
+    glBindVertexArray(m_vao);
     glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
     glBufferData(GL_ARRAY_BUFFER, pointTaille, point, (int)m_glDrawType);
 }
 
 void Forme::ConfigureEBO(int indiceTaille, unsigned int indice[])
 {
-    glGenBuffers(1, &m_ebo);
+    glBindVertexArray(m_vao);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebo);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indiceTaille, indice, (int)m_glDrawType);
 }

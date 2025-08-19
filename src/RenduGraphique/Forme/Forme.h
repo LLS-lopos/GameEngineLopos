@@ -56,6 +56,10 @@ private:
     int m_indiceTaille;
     bool m_filaire = false;
     int n_typeForme = 1;
+    void GenererVBO();
+    void GenererEBO();
+    void ConfigureVAO();
+    void ConfigureVertex();
     void ConfigureVBO(int pointTaille, Vecteur2D* point);
     void ConfigureEBO(int indiceTaille, unsigned int indice[]);
 };
