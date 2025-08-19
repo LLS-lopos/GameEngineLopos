@@ -39,3 +39,13 @@ bool Camera::ObtenirOrientation()const
 {
     return m_siHorizontal;
 }
+
+Matrice3x3 Camera::VueMatrice()const
+{
+    return Matrice3x3::RotateZ(m_angle).Inverse() * Matrice3x3::Translate(m_position).Inverse();
+}
+Matrice3x3 Camera::NDCespaceMatrice(float fenetreLargeur, float fenetreHauteur)const
+{
+    Vecteur2D taille = ObtenirTailleVetH(fenetreLargeur, fenetreHauteur);
+    return Matrice3x3::ScaleXY(Vecteur2D(2.0f / taille.m_x, 2.0f / taille.m_y));
+}
