@@ -3,7 +3,7 @@ Compilateur = g++
 Librairies = -I./Libs/ -I./Libs/include/ -I/usr/include/GL
 LIBS = -lGL -lGLU -lglut -lglfw -lm
 EXsource = Libs/src/glad.c
-Source = src/main.cpp src/core/Fenetre.cpp src/RenduGraphique/Forme/Forme.cpp src/RenduGraphique/Shader/Shader.cpp src/RenduGraphique/Forme/Fcarre.cpp src/RenduGraphique/Forme/Fcercle.cpp src/RenduGraphique/Forme/Fgrille.cpp src/RenduGraphique/Forme/FpolygoneRegulier.cpp src/RenduGraphique/Forme/Frectangle.cpp src/RenduGraphique/Forme/Ftriangle.cpp src/RenduGraphique/Vecteur/Vecteur2D.cpp src/RenduGraphique/Vecteur/FormeVec2D.cpp src/core/Camera.cpp src/RenduGraphique/OperationVecteur/TranformationUtils.cpp src/RenduGraphique/Vecteur/Transform.cpp
+Source = src/main.cpp src/core/Fenetre.cpp src/RenduGraphique/Forme/Forme.cpp src/RenduGraphique/Shader/Shader.cpp src/RenduGraphique/Forme/Fcarre.cpp src/RenduGraphique/Forme/Fcercle.cpp src/RenduGraphique/Forme/Fgrille.cpp src/RenduGraphique/Forme/FpolygoneRegulier.cpp src/RenduGraphique/Forme/Frectangle.cpp src/RenduGraphique/Forme/Ftriangle.cpp src/RenduGraphique/Vecteur/Vecteur2D.cpp src/RenduGraphique/Vecteur/FormeVec2D.cpp src/core/Camera.cpp src/RenduGraphique/OperationVecteur/TranformationUtils.cpp src/RenduGraphique/Vecteur/Transform.cpp src/RenduGraphique/Matrice/Matrice_2x2.cpp src/RenduGraphique/Matrice/Matrice_3x3.cpp
 
 # Ajout du chemin moteur/ pour les fichiers objets
 Objets = $(patsubst src/%.cpp, moteur/%.o, $(Source)) $(patsubst Libs/src/%.c, moteur/%.o, $(EXsource))  # Ajoute glad.o
