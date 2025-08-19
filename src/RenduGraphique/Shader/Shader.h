@@ -3,6 +3,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include "../Vecteur/Vecteur2D.h"
+#include "../Matrice/Matrice_3x3.h"
 #include <iostream>
 #include <string>
 
@@ -14,6 +15,7 @@ public:
     void DefinirUniformVecteur2D(std::string nom, Vecteur2D valeur);
     void DefinirUniformVecteur4D(std::string nom, float r, float g, float b, float a);
     void DefinirUniformeFloat(std::string nom, float valeur);
+    void DefinirUniformeMatrice3x3(std::string nom, Matrice3x3 matrice);
 
 private:
     int m_shaderProgram;

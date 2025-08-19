@@ -79,3 +79,9 @@ void Shader::DefinirUniformeFloat(std::string nom, float valeur)
     int location = glGetUniformLocation(m_shaderProgram, nom.c_str());
     glUniform1f(location, valeur);
 }
+
+void Shader::DefinirUniformeMatrice3x3(std::string nom, Matrice3x3 matrice)
+{
+    int location = glGetUniformLocation(m_shaderProgram, nom.c_str());
+    glUniformMatrix3fv(location, 1, GL_TRUE, matrice.GetAsArray().data());
+}
