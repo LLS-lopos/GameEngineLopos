@@ -34,6 +34,11 @@ void Forme::Draw(Camera* camera, Fenetre* fenetre) // Dessiner la forme
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
     glEnableVertexAttribArray(0);
     m_shader->UtilisezShader();
+    m_shader->DefinirUniformeMatrice3x3("model", m_transform.TransformeMatrice());
+    m_shader->DefinirUniformeMatrice3x3("vue", camera->VueMatrice());
+    m_shader->DefinirUniformeMatrice3x3("NDCespace", camera->NDCespaceMatrice(fenetre->ObtenirLargeur(), fenetre->ObtenirHauteur()));
+
+    /*
     m_shader->DefinirUniformVecteur2D("shapePosition", m_transform.m_position);
     m_shader->DefinirUniformVecteur2D("shapeScale", m_transform.m_echelle);
     m_shader->DefinirUniformeFloat("shapeAngle", (m_transform.m_angle * M_PI / 180));
@@ -41,6 +46,7 @@ void Forme::Draw(Camera* camera, Fenetre* fenetre) // Dessiner la forme
     Vecteur2D taille = camera->ObtenirTailleVetH(fenetre->ObtenirLargeur(), fenetre->ObtenirHauteur());
     m_shader->DefinirUniformeFloat("cameraHorizontalSize", taille.m_x);
     m_shader->DefinirUniformeFloat("cameraVerticalSize", taille.m_y);
+    */
     
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebo);
     glDrawElements((int)m_formeType, n_typeForme, GL_UNSIGNED_INT, 0);
