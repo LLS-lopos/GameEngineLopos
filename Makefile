@@ -3,7 +3,7 @@ Compilateur = g++
 Librairies = -I./Libs/ -I./Libs/include/ -I/usr/include/GL
 LIBS = -lGL -lGLU -lglut -lglfw -lm
 EXsource = Libs/src/glad.c
-Source = src/main.cpp src/core/Fenetre.cpp src/RenduGraphique/Forme/Forme.cpp src/RenduGraphique/Shader/Shader.cpp src/RenduGraphique/Forme/Fcarre.cpp src/RenduGraphique/Forme/Fcercle.cpp src/RenduGraphique/Forme/Fgrille.cpp src/RenduGraphique/Forme/FpolygoneRegulier.cpp src/RenduGraphique/Forme/Frectangle.cpp src/RenduGraphique/Forme/Ftriangle.cpp src/RenduGraphique/Vecteur/Vecteur2D.cpp src/RenduGraphique/Vecteur/FormeVec2D.cpp src/core/Camera.cpp src/RenduGraphique/OperationVecteur/TranformationUtils.cpp src/RenduGraphique/Vecteur/Transform.cpp src/RenduGraphique/Matrice/Matrice_2x2.cpp src/RenduGraphique/Matrice/Matrice_3x3.cpp src/utilitaire/SysFichier.cpp
+Source = src/main.cpp src/core/Fenetre.cpp src/core/Forme/Forme.cpp src/core/Shader/Shader.cpp src/core/Forme/Fcarre.cpp src/core/Forme/Fcercle.cpp src/core/Forme/Fgrille.cpp src/core/Forme/FpolygoneRegulier.cpp src/core/Forme/Frectangle.cpp src/core/Forme/Ftriangle.cpp src/math/Vecteur/Vecteur2D.cpp src/math/Vecteur/FormeVec2D.cpp src/core/Camera.cpp src/math/OperationVecteur/TranformationUtils.cpp src/core/Transformation/Transform.cpp src/math/Matrice/Matrice_2x2.cpp src/math/Matrice/Matrice_3x3.cpp src/utilitaire/SysFichier.cpp 
 
 # Ajout du chemin moteur/ pour les fichiers objets
 Objets = $(patsubst src/%.cpp, moteur/%.o, $(Source)) $(patsubst Libs/src/%.c, moteur/%.o, $(EXsource))  # Ajoute glad.o
@@ -18,11 +18,12 @@ all: create_dirs $(Sortie)
 # Règle pour créer les répertoires nécessaires
 create_dirs:
 	mkdir -p moteur/core 
-	mkdir -p moteur/RenduGraphique/Forme 
-	mkdir -p moteur/RenduGraphique/Matrice
-	mkdir -p moteur/RenduGraphique/OperationVecteur
-	mkdir -p moteur/RenduGraphique/Shader 
-	mkdir -p moteur/RenduGraphique/Vecteur
+	mkdir -p moteur/core/Forme 
+	mkdir -p moteur/core/Transformation
+	mkdir -p moteur/math/Matrice
+	mkdir -p moteur/math/OperationVecteur
+	mkdir -p moteur/core/Shader 
+	mkdir -p moteur/math/Vecteur
 	mkdir -p moteur/utilitaire
 	# Créer le répertoire assets et copier son contenu
 	mkdir -p moteur/assets

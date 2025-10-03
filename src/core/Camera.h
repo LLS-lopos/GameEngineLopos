@@ -1,7 +1,7 @@
 #ifndef _CAMERA_H_
 #define _CAMERA_H_
-#include "../RenduGraphique/Vecteur/Vecteur2D.h"
-#include "../RenduGraphique/Matrice/Matrice_3x3.h"
+#include "../math/Vecteur/Vecteur2D.h"
+#include "../math/Matrice/Matrice_3x3.h"
 
 class Camera
 {

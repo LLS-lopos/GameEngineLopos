@@ -2,10 +2,10 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
-#include "RenduGraphique/Forme/Forme.h"
+#include "core/Forme/Forme.h"
 #include "core/Fenetre.h"
-#include "RenduGraphique/Vecteur/FormeVec2D.h"
-#include "RenduGraphique/OperationVecteur/TranformationUtils.h"
+#include "math/Vecteur/FormeVec2D.h"
+#include "math/OperationVecteur/TranformationUtils.h"
 #include "utilitaire/SysFichier.h"
 
 int main()
