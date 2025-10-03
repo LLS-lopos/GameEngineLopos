@@ -1,4 +1,4 @@
-#ifndef  _SYSTEM_FICHIER_H_
+#ifndef _SYSTEM_FICHIER_H_
 #define _SYSTEM_FICHIER_H_
 #include <fstream>
 #include <sstream>

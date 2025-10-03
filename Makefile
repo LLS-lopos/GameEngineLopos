@@ -3,7 +3,7 @@ Compilateur = g++
 Librairies = -I./Libs/ -I./Libs/include/ -I/usr/include/GL
 LIBS = -lGL -lGLU -lglut -lglfw -lm
 EXsource = Libs/src/glad.c
-Source = src/main.cpp src/core/Fenetre.cpp src/core/Forme/Forme.cpp src/core/Shader/Shader.cpp src/core/Forme/Fcarre.cpp src/core/Forme/Fcercle.cpp src/core/Forme/Fgrille.cpp src/core/Forme/FpolygoneRegulier.cpp src/core/Forme/Frectangle.cpp src/core/Forme/Ftriangle.cpp src/math/Vecteur/Vecteur2D.cpp src/math/Vecteur/FormeVec2D.cpp src/core/Camera.cpp src/math/OperationVecteur/TranformationUtils.cpp src/core/Transformation/Transform.cpp src/math/Matrice/Matrice_2x2.cpp src/math/Matrice/Matrice_3x3.cpp src/utilitaire/SysFichier.cpp 
+Source = src/main.cpp src/core/Fenetre.cpp src/core/Forme/Forme.cpp src/core/Shader/Shader.cpp src/core/Forme/Fcarre.cpp src/core/Forme/Fcercle.cpp src/core/Forme/Fgrille.cpp src/core/Forme/FpolygoneRegulier.cpp src/core/Forme/Frectangle.cpp src/core/Forme/Ftriangle.cpp src/math/Vecteur/Vecteur2D.cpp src/math/Vecteur/FormeVec2D.cpp src/core/Camera.cpp src/math/OperationVecteur/TranformationUtils.cpp src/core/Transformation/Transform.cpp src/math/Matrice/Matrice_2x2.cpp src/math/Matrice/Matrice_3x3.cpp src/utilitaire/SysFichier.cpp src/math/Matrice/Matrice_4x4.cpp src/math/Vecteur/Vecteur3D.cpp src/math/Vecteur/Vecteur4D.cpp
 
 # Ajout du chemin moteur/ pour les fichiers objets
 Objets = $(patsubst src/%.cpp, moteur/%.o, $(Source)) $(patsubst Libs/src/%.c, moteur/%.o, $(EXsource))  # Ajoute glad.o
